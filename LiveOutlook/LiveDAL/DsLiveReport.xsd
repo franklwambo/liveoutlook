@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsLiveReport" targetNamespace="http://tempuri.org/DsLiveReport.xsd" xmlns:mstns="http://tempuri.org/DsLiveReport.xsd" xmlns="http://tempuri.org/DsLiveReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="dbOutlookConnectionString" ConnectionStringObject="" IsAppSettingsProperty="True" Modifier="Assembly" Name="dbOutlookConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.LiveOutlook.Properties.Settings.GlobalReference.Default.dbOutlookConnectionString" Provider="System.Data.SqlClient">
+          </Connection>
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VisitScheduleTableAdapter" GeneratorDataComponentClassName="VisitScheduleTableAdapter" Name="VisitSchedule" UserDataComponentName="VisitScheduleTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     TblAppointment.Appointment, TblAppointment.RegNo, TblEnrollment.Names, TblEnrollment.Age, TblEnrollment.AgeUnit, TblEnrollment.Sex, 
+                      TblAppointment.ReturnDate, DATEDIFF(d, TblAppointment.Appointment, TblAppointment.ReturnDate) AS [Days Missed], derivedtbl_1.ART, 
+                      derivedtbl_2.[Referred To], derivedtbl_3.[Referred By], TblAppointment.VisitDate, TblEnrollment.ContactInfo, TblEnrollment.Residence
+FROM         TblAppointment INNER JOIN
+                      TblEnrollment ON TblAppointment.RegNo = TblEnrollment.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_1.RegNo, ART.ART
+                            FROM          TblEnrollment AS TblEnrollment_1 INNER JOIN
+                                                       (SELECT     ID, Display AS ART
+                                                         FROM          TblClassification
+                                                         WHERE      (Class = 'Category')) AS ART ON TblEnrollment_1.Category = ART.ID) AS derivedtbl_1 ON 
+                      TblAppointment.RegNo = derivedtbl_1.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_2.RegNo, ReferredTo.[Referred To]
+                            FROM          TblEnrollment AS TblEnrollment_2 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred To]
+                                                         FROM          TblClassification AS TblClassification_1
+                                                         WHERE      (Class = 'ReferredTo')) AS ReferredTo ON TblEnrollment_2.Category = ReferredTo.ID) AS derivedtbl_2 ON 
+                      TblAppointment.RegNo = derivedtbl_2.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_3.RegNo, ReferredBy.[Referred By]
+                            FROM          TblEnrollment AS TblEnrollment_3 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred By]
+                                                         FROM          TblClassification AS TblClassification_2
+                                                         WHERE      (Class = 'ReferredBy')) AS ReferredBy ON TblEnrollment_3.Category = ReferredBy.ID) AS derivedtbl_3 ON 
+                      TblAppointment.RegNo = derivedtbl_3.RegNo
+ORDER BY TblAppointment.Appointment DESC, TblEnrollment.Names</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Appointment" DataSetColumn="Appointment" />
+              <Mapping SourceColumn="RegNo" DataSetColumn="RegNo" />
+              <Mapping SourceColumn="Names" DataSetColumn="Names" />
+              <Mapping SourceColumn="Age" DataSetColumn="Age" />
+              <Mapping SourceColumn="AgeUnit" DataSetColumn="AgeUnit" />
+              <Mapping SourceColumn="Sex" DataSetColumn="Sex" />
+              <Mapping SourceColumn="ReturnDate" DataSetColumn="ReturnDate" />
+              <Mapping SourceColumn="Days Missed" DataSetColumn="Days Missed" />
+              <Mapping SourceColumn="ART" DataSetColumn="ART" />
+              <Mapping SourceColumn="Referred To" DataSetColumn="Referred To" />
+              <Mapping SourceColumn="Referred By" DataSetColumn="Referred By" />
+              <Mapping SourceColumn="VisitDate" DataSetColumn="VisitDate" />
+              <Mapping SourceColumn="ContactInfo" DataSetColumn="ContactInfo" />
+              <Mapping SourceColumn="Residence" DataSetColumn="Residence" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByRegNo" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataByRegNo" GeneratorSourceName="FillByRegNo" GetMethodModifier="Public" GetMethodName="GetDataByRegNo" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataByRegNo" UserSourceName="FillByRegNo">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     TblAppointment.Appointment, TblAppointment.RegNo, TblEnrollment.Names, TblEnrollment.Age, TblEnrollment.AgeUnit, TblEnrollment.Sex, 
+                      TblAppointment.ReturnDate, DATEDIFF(d, TblAppointment.Appointment, TblAppointment.ReturnDate) AS [Days Missed], derivedtbl_1.ART, 
+                      derivedtbl_2.[Referred To], derivedtbl_3.[Referred By], TblAppointment.VisitDate
+FROM         TblAppointment INNER JOIN
+                      TblEnrollment ON TblAppointment.RegNo = TblEnrollment.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_1.RegNo, ART.ART
+                            FROM          TblEnrollment AS TblEnrollment_1 INNER JOIN
+                                                       (SELECT     ID, Display AS ART
+                                                         FROM          TblClassification
+                                                         WHERE      (Class = 'Category')) AS ART ON TblEnrollment_1.Category = ART.ID) AS derivedtbl_1 ON 
+                      TblAppointment.RegNo = derivedtbl_1.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_2.RegNo, ReferredTo.[Referred To]
+                            FROM          TblEnrollment AS TblEnrollment_2 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred To]
+                                                         FROM          TblClassification AS TblClassification_1
+                                                         WHERE      (Class = 'ReferredTo')) AS ReferredTo ON TblEnrollment_2.Category = ReferredTo.ID) AS derivedtbl_2 ON 
+                      TblAppointment.RegNo = derivedtbl_2.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_3.RegNo, ReferredBy.[Referred By]
+                            FROM          TblEnrollment AS TblEnrollment_3 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred By]
+                                                         FROM          TblClassification AS TblClassification_2
+                                                         WHERE      (Class = 'ReferredBy')) AS ReferredBy ON TblEnrollment_3.Category = ReferredBy.ID) AS derivedtbl_3 ON 
+                      TblAppointment.RegNo = derivedtbl_3.RegNo
+WHERE     (TblAppointment.RegNo = @RegNo)
+ORDER BY TblAppointment.Appointment DESC, TblEnrollment.Names</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="False" AutogeneratedName="RegNo" ColumnName="RegNo" DataSourceName="dbOutlook.dbo.TblAppointment" DataTypeServer="varchar(50)" DbType="AnsiString" Direction="Input" ParameterName="@RegNo" Precision="0" ProviderType="VarChar" Scale="0" Size="50" SourceColumn="RegNo" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByVisits" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataByVisits" GeneratorSourceName="FillByVisits" GetMethodModifier="Public" GetMethodName="GetDataByVisits" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataByVisits" UserSourceName="FillByVisits">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT DISTINCT 
+                      TblAppointment.RegNo, TblEnrollment.Names, TblEnrollment.Age, TblEnrollment.AgeUnit, TblEnrollment.Sex, derivedtbl_1.ART, 
+                      derivedtbl_2.[Referred To], derivedtbl_3.[Referred By], derivedtbl_4.NoOfVisits
+FROM         TblAppointment INNER JOIN
+                      TblEnrollment ON TblAppointment.RegNo = TblEnrollment.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_1.RegNo, ART.ART
+                            FROM          TblEnrollment AS TblEnrollment_1 INNER JOIN
+                                                       (SELECT     ID, Display AS ART
+                                                         FROM          TblClassification
+                                                         WHERE      (Class = 'Category')) AS ART ON TblEnrollment_1.Category = ART.ID) AS derivedtbl_1 ON 
+                      TblAppointment.RegNo = derivedtbl_1.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_2.RegNo, ReferredTo.[Referred To]
+                            FROM          TblEnrollment AS TblEnrollment_2 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred To]
+                                                         FROM          TblClassification AS TblClassification_1
+                                                         WHERE      (Class = 'ReferredTo')) AS ReferredTo ON TblEnrollment_2.Category = ReferredTo.ID) AS derivedtbl_2 ON 
+                      TblAppointment.RegNo = derivedtbl_2.RegNo INNER JOIN
+                          (SELECT     TblEnrollment_3.RegNo, ReferredBy.[Referred By]
+                            FROM          TblEnrollment AS TblEnrollment_3 INNER JOIN
+                                                       (SELECT     ID, Display AS [Referred By]
+                                                         FROM          TblClassification AS TblClassification_2
+                                                         WHERE      (Class = 'ReferredBy')) AS ReferredBy ON TblEnrollment_3.Category = ReferredBy.ID) AS derivedtbl_3 ON 
+                      TblAppointment.RegNo = derivedtbl_3.RegNo INNER JOIN
+                          (SELECT     RegNo, COUNT(VisitDate) AS NoOfVisits
+                            FROM          TblAppointment AS TblAppointment_1
+                            GROUP BY RegNo) AS derivedtbl_4 ON TblAppointment.RegNo = derivedtbl_4.RegNo
+WHERE     (TblAppointment.VisitDate BETWEEN @StartDate AND @EndDate)
+ORDER BY TblEnrollment.Names</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="StartDate" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.TblAppointment" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@StartDate" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="EndDate" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.TblAppointment" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ActiveTableAdapter" GeneratorDataComponentClassName="ActiveTableAdapter" Name="Active" UserDataComponentName="ActiveTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="False" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT DISTINCT 
+                         TblAppointment.RegNo, TblEnrollment.Names, TblEnrollment.AgeUnit, TblEnrollment.Sex, derivedtbl_1.ART, derivedtbl_2.[Referred To], derivedtbl_3.[Referred By], 
+                         derivedtbl_4.NoOfVisits, TblEnrollment.ContactInfo, vCurrentAge.Age, TblEnrollment.Age AS AgeatEnrollment
+FROM            TblAppointment INNER JOIN
+                         TblEnrollment ON TblAppointment.RegNo = TblEnrollment.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_1.RegNo, ART.ART
+                               FROM            TblEnrollment AS TblEnrollment_1 INNER JOIN
+                                                             (SELECT        ID, Display AS ART
+                                                               FROM            TblClassification
+                                                               WHERE        (Class = 'Category')) AS ART ON TblEnrollment_1.Category = ART.ID) AS derivedtbl_1 ON 
+                         TblAppointment.RegNo = derivedtbl_1.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_2.RegNo, ReferredTo.[Referred To]
+                               FROM            TblEnrollment AS TblEnrollment_2 INNER JOIN
+                                                             (SELECT        ID, Display AS [Referred To]
+                                                               FROM            TblClassification AS TblClassification_1
+                                                               WHERE        (Class = 'ReferredTo')) AS ReferredTo ON TblEnrollment_2.Category = ReferredTo.ID) AS derivedtbl_2 ON 
+                         TblAppointment.RegNo = derivedtbl_2.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_3.RegNo, ReferredBy.[Referred By]
+                               FROM            TblEnrollment AS TblEnrollment_3 INNER JOIN
+                                                             (SELECT        ID, Display AS [Referred By]
+                                                               FROM            TblClassification AS TblClassification_2
+                                                               WHERE        (Class = 'ReferredBy')) AS ReferredBy ON TblEnrollment_3.Category = ReferredBy.ID) AS derivedtbl_3 ON 
+                         TblAppointment.RegNo = derivedtbl_3.RegNo INNER JOIN
+                             (SELECT        RegNo, COUNT(VisitDate) AS NoOfVisits
+                               FROM            TblAppointment AS TblAppointment_1
+                               GROUP BY RegNo) AS derivedtbl_4 ON TblAppointment.RegNo = derivedtbl_4.RegNo INNER JOIN
+                         vCurrentAge ON TblEnrollment.RegNo = vCurrentAge.RegNo
+WHERE        (TblAppointment.VisitDate BETWEEN @StartDate AND @EndDate)
+ORDER BY TblEnrollment.Names</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="StartDate" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.TblAppointment" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@StartDate" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="EndDate" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.TblAppointment" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@EndDate" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RegNo" DataSetColumn="RegNo" />
+              <Mapping SourceColumn="Names" DataSetColumn="Names" />
+              <Mapping SourceColumn="AgeUnit" DataSetColumn="AgeUnit" />
+              <Mapping SourceColumn="Sex" DataSetColumn="Sex" />
+              <Mapping SourceColumn="ART" DataSetColumn="ART" />
+              <Mapping SourceColumn="Referred To" DataSetColumn="Referred To" />
+              <Mapping SourceColumn="Referred By" DataSetColumn="Referred By" />
+              <Mapping SourceColumn="NoOfVisits" DataSetColumn="NoOfVisits" />
+              <Mapping SourceColumn="ContactInfo" DataSetColumn="ContactInfo" />
+              <Mapping SourceColumn="Age" DataSetColumn="Age" />
+              <Mapping SourceColumn="AgeatEnrollment" DataSetColumn="AgeatEnrollment" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="FillByA" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataA" GeneratorSourceName="FillByA" GetMethodModifier="Public" GetMethodName="GetDataA" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataA" UserSourceName="FillByA">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT DISTINCT 
+                         TblAppointment.RegNo, TblEnrollment.Names, TblEnrollment.AgeUnit, TblEnrollment.Sex, derivedtbl_1.ART, derivedtbl_2.[Referred To], derivedtbl_3.[Referred By], 
+                         derivedtbl_4.NoOfVisits, vCurrentAge.Age, TblEnrollment.Age AS AgeatEnrollment
+FROM            TblAppointment INNER JOIN
+                         TblEnrollment ON TblAppointment.RegNo = TblEnrollment.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_1.RegNo, ART.ART
+                               FROM            TblEnrollment AS TblEnrollment_1 INNER JOIN
+                                                             (SELECT        ID, Display AS ART
+                                                               FROM            TblClassification
+                                                               WHERE        (Class = 'Category')) AS ART ON TblEnrollment_1.Category = ART.ID) AS derivedtbl_1 ON 
+                         TblAppointment.RegNo = derivedtbl_1.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_2.RegNo, ReferredTo.[Referred To]
+                               FROM            TblEnrollment AS TblEnrollment_2 INNER JOIN
+                                                             (SELECT        ID, Display AS [Referred To]
+                                                               FROM            TblClassification AS TblClassification_1
+                                                               WHERE        (Class = 'ReferredTo')) AS ReferredTo ON TblEnrollment_2.Category = ReferredTo.ID) AS derivedtbl_2 ON 
+                         TblAppointment.RegNo = derivedtbl_2.RegNo INNER JOIN
+                             (SELECT        TblEnrollment_3.RegNo, ReferredBy.[Referred By]
+                               FROM            TblEnrollment AS TblEnrollment_3 INNER JOIN
+                                                             (SELECT        ID, Display AS [Referred By]
+                                                               FROM            TblClassification AS TblClassification_2
+                                                               WHERE        (Class = 'ReferredBy')) AS ReferredBy ON TblEnrollment_3.Category = ReferredBy.ID) AS derivedtbl_3 ON 
+                         TblAppointment.RegNo = derivedtbl_3.RegNo INNER JOIN
+                             (SELECT        RegNo, COUNT(VisitDate) AS NoOfVisits
+                               FROM            TblAppointment AS TblAppointment_1
+                               GROUP BY RegNo) AS derivedtbl_4 ON TblAppointment.RegNo = derivedtbl_4.RegNo INNER JOIN
+                         vCurrentAge ON TblEnrollment.RegNo = vCurrentAge.RegNo
+ORDER BY TblEnrollment.Names</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="VisitCountTableAdapter" GeneratorDataComponentClassName="VisitCountTableAdapter" Name="VisitCount" UserDataComponentName="VisitCountTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectName="dboutlook.dbo.VisitCount" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="False" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     Appointment, RegNo, Names, Age, AgeUnit, Sex, ReturnDate, [Days Missed], ART, [Referred To], [Referred By], VisitDate, ContactInfo, Residence, 
+                      CurrentStatus, NoOfVisits
+FROM         VisitCount</CommandText>
+                    <Parameters>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Appointment" DataSetColumn="Appointment" />
+              <Mapping SourceColumn="RegNo" DataSetColumn="RegNo" />
+              <Mapping SourceColumn="Names" DataSetColumn="Names" />
+              <Mapping SourceColumn="Age" DataSetColumn="Age" />
+              <Mapping SourceColumn="AgeUnit" DataSetColumn="AgeUnit" />
+              <Mapping SourceColumn="Sex" DataSetColumn="Sex" />
+              <Mapping SourceColumn="ReturnDate" DataSetColumn="ReturnDate" />
+              <Mapping SourceColumn="Days Missed" DataSetColumn="Days Missed" />
+              <Mapping SourceColumn="ART" DataSetColumn="ART" />
+              <Mapping SourceColumn="Referred To" DataSetColumn="Referred To" />
+              <Mapping SourceColumn="Referred By" DataSetColumn="Referred By" />
+              <Mapping SourceColumn="VisitDate" DataSetColumn="VisitDate" />
+              <Mapping SourceColumn="ContactInfo" DataSetColumn="ContactInfo" />
+              <Mapping SourceColumn="Residence" DataSetColumn="Residence" />
+              <Mapping SourceColumn="CurrentStatus" DataSetColumn="CurrentStatus" />
+              <Mapping SourceColumn="NoOfVisits" DataSetColumn="NoOfVisits" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="dbOutlookConnectionString (Settings)" DbObjectName="dboutlook.dbo.VisitCount" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDates" GenerateMethods="Both" GenerateShortCommands="True" GeneratorGetMethodName="GetDataByDates" GeneratorSourceName="FillByDates" GetMethodModifier="Public" GetMethodName="GetDataByDates" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="True" UserGetMethodName="GetDataByDates" UserSourceName="FillByDates">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="True">
+                    <CommandText>SELECT     Appointment, RegNo, Names, Age, AgeUnit, Sex, ReturnDate, [Days Missed], ART, [Referred To], [Referred By], VisitDate, ContactInfo, Residence, 
+                      CurrentStatus, NoOfVisits
+FROM         VisitCount
+WHERE     (VisitDate BETWEEN @DateA AND @DateB)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="True" AutogeneratedName="DateA" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.VisitCount" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@DateA" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                      <Parameter AllowDbNull="True" AutogeneratedName="DateB" ColumnName="VisitDate" DataSourceName="dboutlook.dbo.VisitCount" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="@DateB" Precision="0" ProviderType="DateTime" Scale="0" Size="8" SourceColumn="VisitDate" SourceColumnNullMapping="False" SourceVersion="Current">
+                      </Parameter>
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+        </Tables>
+        <Sources>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DsLiveReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="DsLiveReport" msprop:Generator_DataSetName="DsLiveReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VisitSchedule" msprop:Generator_UserTableName="VisitSchedule" msprop:Generator_RowDeletedName="VisitScheduleRowDeleted" msprop:Generator_RowChangedName="VisitScheduleRowChanged" msprop:Generator_RowClassName="VisitScheduleRow" msprop:Generator_RowChangingName="VisitScheduleRowChanging" msprop:Generator_RowEvArgName="VisitScheduleRowChangeEvent" msprop:Generator_RowEvHandlerName="VisitScheduleRowChangeEventHandler" msprop:Generator_TableClassName="VisitScheduleDataTable" msprop:Generator_TableVarName="tableVisitSchedule" msprop:Generator_RowDeletingName="VisitScheduleRowDeleting" msprop:Generator_TablePropName="VisitSchedule">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Appointment" msprop:Generator_UserColumnName="Appointment" msprop:Generator_ColumnPropNameInRow="Appointment" msprop:Generator_ColumnVarNameInTable="columnAppointment" msprop:Generator_ColumnPropNameInTable="AppointmentColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RegNo" msprop:Generator_UserColumnName="RegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Names" msprop:Generator_UserColumnName="Names" msprop:Generator_ColumnPropNameInRow="Names" msprop:Generator_ColumnVarNameInTable="columnNames" msprop:Generator_ColumnPropNameInTable="NamesColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Age" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="AgeUnit" msprop:Generator_UserColumnName="AgeUnit" msprop:Generator_ColumnPropNameInRow="AgeUnit" msprop:Generator_ColumnVarNameInTable="columnAgeUnit" msprop:Generator_ColumnPropNameInTable="AgeUnitColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sex" msprop:Generator_UserColumnName="Sex" msprop:Generator_ColumnPropNameInRow="Sex" msprop:Generator_ColumnVarNameInTable="columnSex" msprop:Generator_ColumnPropNameInTable="SexColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReturnDate" msprop:Generator_UserColumnName="ReturnDate" msprop:Generator_ColumnPropNameInRow="ReturnDate" msprop:Generator_ColumnVarNameInTable="columnReturnDate" msprop:Generator_ColumnPropNameInTable="ReturnDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Days_x0020_Missed" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Days Missed" msprop:Generator_ColumnPropNameInRow="Days_Missed" msprop:Generator_ColumnVarNameInTable="columnDays_Missed" msprop:Generator_ColumnPropNameInTable="Days_MissedColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ART" msprop:Generator_UserColumnName="ART" msprop:Generator_ColumnPropNameInRow="ART" msprop:Generator_ColumnVarNameInTable="columnART" msprop:Generator_ColumnPropNameInTable="ARTColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_To" msprop:Generator_UserColumnName="Referred To" msprop:Generator_ColumnPropNameInRow="Referred_To" msprop:Generator_ColumnVarNameInTable="columnReferred_To" msprop:Generator_ColumnPropNameInTable="Referred_ToColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_By" msprop:Generator_UserColumnName="Referred By" msprop:Generator_ColumnPropNameInRow="Referred_By" msprop:Generator_ColumnVarNameInTable="columnReferred_By" msprop:Generator_ColumnPropNameInTable="Referred_ByColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VisitDate" msprop:Generator_UserColumnName="VisitDate" msprop:Generator_ColumnPropNameInRow="VisitDate" msprop:Generator_ColumnVarNameInTable="columnVisitDate" msprop:Generator_ColumnPropNameInTable="VisitDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Residence" msprop:Generator_UserColumnName="Residence" msprop:Generator_ColumnVarNameInTable="columnResidence" msprop:Generator_ColumnPropNameInRow="Residence" msprop:Generator_ColumnPropNameInTable="ResidenceColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Active" msprop:Generator_UserTableName="Active" msprop:Generator_RowDeletedName="ActiveRowDeleted" msprop:Generator_RowChangedName="ActiveRowChanged" msprop:Generator_RowClassName="ActiveRow" msprop:Generator_RowChangingName="ActiveRowChanging" msprop:Generator_RowEvArgName="ActiveRowChangeEvent" msprop:Generator_RowEvHandlerName="ActiveRowChangeEventHandler" msprop:Generator_TableClassName="ActiveDataTable" msprop:Generator_TableVarName="tableActive" msprop:Generator_RowDeletingName="ActiveRowDeleting" msprop:Generator_TablePropName="Active">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RegNo" msprop:Generator_UserColumnName="RegNo" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Names" msprop:Generator_UserColumnName="Names" msprop:Generator_ColumnVarNameInTable="columnNames" msprop:Generator_ColumnPropNameInRow="Names" msprop:Generator_ColumnPropNameInTable="NamesColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AgeUnit" msprop:Generator_UserColumnName="AgeUnit" msprop:Generator_ColumnVarNameInTable="columnAgeUnit" msprop:Generator_ColumnPropNameInRow="AgeUnit" msprop:Generator_ColumnPropNameInTable="AgeUnitColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sex" msprop:Generator_UserColumnName="Sex" msprop:Generator_ColumnVarNameInTable="columnSex" msprop:Generator_ColumnPropNameInRow="Sex" msprop:Generator_ColumnPropNameInTable="SexColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ART" msprop:Generator_UserColumnName="ART" msprop:Generator_ColumnVarNameInTable="columnART" msprop:Generator_ColumnPropNameInRow="ART" msprop:Generator_ColumnPropNameInTable="ARTColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_To" msprop:Generator_UserColumnName="Referred To" msprop:Generator_ColumnVarNameInTable="columnReferred_To" msprop:Generator_ColumnPropNameInRow="Referred_To" msprop:Generator_ColumnPropNameInTable="Referred_ToColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_By" msprop:Generator_UserColumnName="Referred By" msprop:Generator_ColumnVarNameInTable="columnReferred_By" msprop:Generator_ColumnPropNameInRow="Referred_By" msprop:Generator_ColumnPropNameInTable="Referred_ByColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoOfVisits" msdata:ReadOnly="true" msprop:Generator_UserColumnName="NoOfVisits" msprop:Generator_ColumnVarNameInTable="columnNoOfVisits" msprop:Generator_ColumnPropNameInRow="NoOfVisits" msprop:Generator_ColumnPropNameInTable="NoOfVisitsColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Age" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AgeatEnrollment" msprop:Generator_UserColumnName="AgeatEnrollment" msprop:Generator_ColumnPropNameInRow="AgeatEnrollment" msprop:Generator_ColumnVarNameInTable="columnAgeatEnrollment" msprop:Generator_ColumnPropNameInTable="AgeatEnrollmentColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="VisitCount" msprop:Generator_UserTableName="VisitCount" msprop:Generator_RowDeletedName="VisitCountRowDeleted" msprop:Generator_RowChangedName="VisitCountRowChanged" msprop:Generator_RowClassName="VisitCountRow" msprop:Generator_RowChangingName="VisitCountRowChanging" msprop:Generator_RowEvArgName="VisitCountRowChangeEvent" msprop:Generator_RowEvHandlerName="VisitCountRowChangeEventHandler" msprop:Generator_TableClassName="VisitCountDataTable" msprop:Generator_TableVarName="tableVisitCount" msprop:Generator_RowDeletingName="VisitCountRowDeleting" msprop:Generator_TablePropName="VisitCount">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Appointment" msprop:Generator_UserColumnName="Appointment" msprop:Generator_ColumnPropNameInRow="Appointment" msprop:Generator_ColumnVarNameInTable="columnAppointment" msprop:Generator_ColumnPropNameInTable="AppointmentColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="RegNo" msprop:Generator_UserColumnName="RegNo" msprop:Generator_ColumnPropNameInRow="RegNo" msprop:Generator_ColumnVarNameInTable="columnRegNo" msprop:Generator_ColumnPropNameInTable="RegNoColumn">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Names" msprop:Generator_UserColumnName="Names" msprop:Generator_ColumnPropNameInRow="Names" msprop:Generator_ColumnVarNameInTable="columnNames" msprop:Generator_ColumnPropNameInTable="NamesColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Age" msprop:Generator_UserColumnName="Age" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInTable="AgeColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="AgeUnit" msprop:Generator_UserColumnName="AgeUnit" msprop:Generator_ColumnPropNameInRow="AgeUnit" msprop:Generator_ColumnVarNameInTable="columnAgeUnit" msprop:Generator_ColumnPropNameInTable="AgeUnitColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Sex" msprop:Generator_UserColumnName="Sex" msprop:Generator_ColumnPropNameInRow="Sex" msprop:Generator_ColumnVarNameInTable="columnSex" msprop:Generator_ColumnPropNameInTable="SexColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="1" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ReturnDate" msprop:Generator_UserColumnName="ReturnDate" msprop:Generator_ColumnPropNameInRow="ReturnDate" msprop:Generator_ColumnVarNameInTable="columnReturnDate" msprop:Generator_ColumnPropNameInTable="ReturnDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Days_x0020_Missed" msdata:ReadOnly="true" msprop:Generator_UserColumnName="Days Missed" msprop:Generator_ColumnPropNameInRow="Days_Missed" msprop:Generator_ColumnVarNameInTable="columnDays_Missed" msprop:Generator_ColumnPropNameInTable="Days_MissedColumn" type="xs:int" minOccurs="0" />
+              <xs:element name="ART" msprop:Generator_UserColumnName="ART" msprop:Generator_ColumnPropNameInRow="ART" msprop:Generator_ColumnVarNameInTable="columnART" msprop:Generator_ColumnPropNameInTable="ARTColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_To" msprop:Generator_UserColumnName="Referred To" msprop:Generator_ColumnPropNameInRow="Referred_To" msprop:Generator_ColumnVarNameInTable="columnReferred_To" msprop:Generator_ColumnPropNameInTable="Referred_ToColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Referred_x0020_By" msprop:Generator_UserColumnName="Referred By" msprop:Generator_ColumnPropNameInRow="Referred_By" msprop:Generator_ColumnVarNameInTable="columnReferred_By" msprop:Generator_ColumnPropNameInTable="Referred_ByColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VisitDate" msprop:Generator_UserColumnName="VisitDate" msprop:Generator_ColumnPropNameInRow="VisitDate" msprop:Generator_ColumnVarNameInTable="columnVisitDate" msprop:Generator_ColumnPropNameInTable="VisitDateColumn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ContactInfo" msprop:Generator_UserColumnName="ContactInfo" msprop:Generator_ColumnPropNameInRow="ContactInfo" msprop:Generator_ColumnVarNameInTable="columnContactInfo" msprop:Generator_ColumnPropNameInTable="ContactInfoColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Residence" msprop:Generator_UserColumnName="Residence" msprop:Generator_ColumnPropNameInRow="Residence" msprop:Generator_ColumnVarNameInTable="columnResidence" msprop:Generator_ColumnPropNameInTable="ResidenceColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CurrentStatus" msprop:Generator_UserColumnName="CurrentStatus" msprop:Generator_ColumnPropNameInRow="CurrentStatus" msprop:Generator_ColumnVarNameInTable="columnCurrentStatus" msprop:Generator_ColumnPropNameInTable="CurrentStatusColumn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="NoOfVisits" msprop:Generator_UserColumnName="NoOfVisits" msprop:Generator_ColumnPropNameInRow="NoOfVisits" msprop:Generator_ColumnVarNameInTable="columnNoOfVisits" msprop:Generator_ColumnPropNameInTable="NoOfVisitsColumn" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
