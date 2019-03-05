@@ -142,10 +142,10 @@ namespace LiveOutlook.LiveApp
             this.LiveReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.LiveReportViewer.Location = new System.Drawing.Point(0, 0);
             this.LiveReportViewer.Name = "LiveReportViewer";
-            this.LiveReportViewer.SelectionFormula = "";
+            //this.LiveReportViewer.SelectionFormula = "";
             this.LiveReportViewer.Size = new System.Drawing.Size(992, 567);
             this.LiveReportViewer.TabIndex = 0;
-            this.LiveReportViewer.ViewTimeSelectionFormula = "";
+            //this.LiveReportViewer.ViewTimeSelectionFormula = "";
             // 
             // lvAppointment
             // 

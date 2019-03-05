@@ -23,7 +23,7 @@ namespace LiveOutlook.LiveBLL
         private static DsLiveReport.VisitCountDataTable dtVisitC;
         private static DsLiveReport.VisitCountRow drwVisitC;
 
-        private static rptVisit rptvisit;
+        private static rptVisit rptvisit1;
         private static rptActive rptavisit;
         private static rptDefaulter rptdefaulter;
         private static rptVisitCount rptvisitcount;
@@ -33,54 +33,54 @@ namespace LiveOutlook.LiveBLL
         {
             try
             {
-                rptvisit = new rptVisit();
+                rptvisit1 = new rptVisit();
                 daVist = new VisitScheduleTableAdapter();
                 dtVisit = new DsLiveReport.VisitScheduleDataTable();
                 daVist.Fill(dtVisit);
-                rptvisit.SetDataSource((DataTable)dtVisit);
+                rptvisit1.SetDataSource((DataTable)dtVisit);
 
             }
             catch (Exception ex)
             {
                 Interactive.LInfoError(ex.Message, "Error occured when retriving data");
             }
-            return rptvisit;
+            return rptvisit1;
         }
         internal static rptVisit ViewAllVisitScheduleRegNo(string reg)
         {
             try
             {
-                rptvisit = new rptVisit();
+                rptvisit1 = new rptVisit();
                 daVist = new VisitScheduleTableAdapter();
                 dtVisit = new DsLiveReport.VisitScheduleDataTable();
                 daVist.FillByRegNo(dtVisit,reg);
-                rptvisit.SetDataSource((DataTable)dtVisit);
+                rptvisit1.SetDataSource((DataTable)dtVisit);
 
             }
             catch (Exception ex)
             {
                 Interactive.LInfoError(ex.Message, "Error occured when retriving data");
             }
-            return rptvisit;
+            return rptvisit1;
         }
         internal static rptVisit ViewAllVisitSchedule(string strsearch)
         {
             try
             {
-                rptvisit = new rptVisit();
+                rptvisit1 = new rptVisit();
                 daVist = new VisitScheduleTableAdapter();
                 dtVisit = new DsLiveReport.VisitScheduleDataTable();
                 daVist.Fill(dtVisit);
                 //rptvisit.DataDefinition.FormulaFields[2].Text = "\"" + paramValue + "\"";
                 //strsearch = "{VisitSchedule.RegNo} <> ''AND Datediff('d',{VisitSchedule.Appointment},Cdate({@PeriodEnding}))>2 AND IsNull({VisitSchedule.ReturnDate})";
-                rptvisit.SetDataSource((DataTable)dtVisit);
-                rptvisit.RecordSelectionFormula = strsearch;
+                rptvisit1.SetDataSource((DataTable)dtVisit);
+                rptvisit1.RecordSelectionFormula = strsearch;
             }
             catch (Exception ex)
             {
                 Interactive.LInfoError(ex.Message, "Error occured when retriving data");
             }
-            return rptvisit;
+            return rptvisit1;
         }
         internal static rptActive ViewAllActive(string strsearch)
         {
@@ -120,18 +120,18 @@ namespace LiveOutlook.LiveBLL
         {
             try
             {
-                rptvisit = new rptVisit();
+                rptvisit1 = new rptVisit();
                 daVist = new VisitScheduleTableAdapter();
                 dtVisit = new DsLiveReport.VisitScheduleDataTable();
                 daVist.FillByRegNo(dtVisit,reg);
-                rptvisit.SetDataSource((DataTable)dtVisit);
-                rptvisit.RecordSelectionFormula = strsearch;
+                rptvisit1.SetDataSource((DataTable)dtVisit);
+                rptvisit1.RecordSelectionFormula = strsearch;
             }
             catch (Exception ex)
             {
                 Interactive.LInfoError(ex.Message, "Error occured when retriving data");
             }
-            return rptvisit;
+            return rptvisit1;
         }
         internal static rptDefaulter ViewAllDefaulters(string strsearch, string paramValue)
         {

@@ -228,7 +228,7 @@ namespace LiveOutlook.LiveBLL
             try
             {
                 daAppointment = new TblAppointmentTableAdapter();
-                n = Convert.ToInt32(daAppointment.GetNoOfAppointments(Convert.ToDateTime(AppointmentInfo.Appointment.ToString("dd/MM/yyyy"))));
+                n = Convert.ToInt32(daAppointment.GetNoOfAppointments(Convert.ToDateTime(AppointmentInfo.Appointment.ToString("yyyy/MM/dd"))));
             }
             catch (Exception ex)
             {

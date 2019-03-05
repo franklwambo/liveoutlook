@@ -1,7 +1,7 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="15.0">
   <PropertyGroup>
     <ProjectView>ProjectFiles</ProjectView>
-    <PublishUrlHistory>\\192.168.100.10\d%24\LiveOutlook\|F:\Danson\LiveSystems\PGH\LiveOutlook\|F:\Danson\LiveSystems\PGH\LiveOutlook-Deploy\|C:\Inetpub\wwwroot\Live\LiveOutlook\|C:\Inetpub\</PublishUrlHistory>
+    <PublishUrlHistory>C:\Users\HISProgrammer\Documents\liveoutlook\|\\192.168.100.10\d%24\LiveOutlook\|F:\Danson\LiveSystems\PGH\LiveOutlook\|F:\Danson\LiveSystems\PGH\LiveOutlook-Deploy\|C:\Inetpub\wwwroot\Live\LiveOutlook\</PublishUrlHistory>
     <InstallUrlHistory>
     </InstallUrlHistory>
     <SupportUrlHistory>http://kecw-gap-02559.ke.cdc.gov/live</SupportUrlHistory>

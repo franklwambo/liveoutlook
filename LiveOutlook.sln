@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LiveOutlook", "LiveOutlook\LiveOutlook.csproj", "{A53D1C28-12D3-47C6-87D6-DF0FC1501A44}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "LiveOutlookSetup", "LiveOutlookSetup\LiveOutlookSetup.vdproj", "{71F1F895-822D-4044-96E2-BB9FD441915A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,12 +23,16 @@ Global
 		{A53D1C28-12D3-47C6-87D6-DF0FC1501A44}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A53D1C28-12D3-47C6-87D6-DF0FC1501A44}.Release|x86.ActiveCfg = Release|x86
 		{A53D1C28-12D3-47C6-87D6-DF0FC1501A44}.Release|x86.Build.0 = Release|x86
+		{71F1F895-822D-4044-96E2-BB9FD441915A}.Debug|Any CPU.ActiveCfg = Debug
+		{71F1F895-822D-4044-96E2-BB9FD441915A}.Debug|x86.ActiveCfg = Debug
+		{71F1F895-822D-4044-96E2-BB9FD441915A}.Release|Any CPU.ActiveCfg = Release
+		{71F1F895-822D-4044-96E2-BB9FD441915A}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {A9485941-20FB-42F1-B5C4-7CFC26C9AECC}
 		VisualSVNWorkingCopyRoot = .
+		SolutionGuid = {A9485941-20FB-42F1-B5C4-7CFC26C9AECC}
 	EndGlobalSection
 EndGlobal
